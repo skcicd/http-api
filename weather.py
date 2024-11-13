@@ -1,7 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 import requests
 
 app = Flask(__name__)
+
+# The code below lets the Flask server respond to browser requests for a favicon
+@app.route("/favicon.ico")
+def favicon():
+    return url_for('static', filename='data:,')
 
 API_KEY = '6a7b6ef9f8ef66e56e652f0ced597697'  # API ключ OpenWeatherMap
 
