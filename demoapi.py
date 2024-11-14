@@ -7,10 +7,15 @@ users = {
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET'])
-def top_url():
+@app.route('/users', methods=['GET'])
+def get_all_users():
     temp = list(users.values())
     return jsonify(temp)
+
+@app.route('/users/<userid>', methods=['GET'])
+def get_single_user(userid):
+    this_user = users[userid]
+    return jsonify(this_user)
 
 
 app.run(host='0.0.0.0', port=5000, debug=True)
